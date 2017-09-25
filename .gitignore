@@ -1,4 +1,5 @@
 *.pyc
+junit*.xml
 config.json
 .idea
 .tox

@@ -13,6 +13,10 @@ setup(
     py_modules=[splitext(basename(path))[0] for path in glob('src/*.py')],
     include_package_data=True,
     zip_safe=False,
+
+    entry_points={
+        "console_scripts": ["start-bot=game_bot.bot:Bot.start_bot"]
+    },
     install_requires=[
         "discord.py",
         "steam",

@@ -2,12 +2,28 @@ import json
 
 
 class Configuration(object):
-    def __init__(self, token=None, bot_commands=None):
-        self.token = token
-        self.bot_commands = bot_commands
+    class DiscordConfiguration(object):
+        def __init__(self, api_token=None, user_id=None, **kwargs):
+            self.user_id = user_id
+            self.api_token = api_token
 
-    def get_command_configuration(self, config_key):
-        return self.bot_commands.get(config_key, {})
+    class LoggingConfiguration(object):
+        def __init__(self, level=None, console=None, file=None, **kwargs):
+            self.log_level = level
+            self.file = file
+            self.console = console
+
+    def __init__(self, discord=None, logging=None, commands=None, **kwargs):
+        if discord is None:
+            discord = {}
+        if logging is None:
+            logging = {}
+        if commands is None:
+            commands = {}
+
+        self.discord = self.DiscordConfiguration(**discord)
+        self.logging = self.LoggingConfiguration(**logging)
+        self.commands = commands
 
     @classmethod
     def from_json_file(cls, json_file):

@@ -1,0 +1,11 @@
+[Unit]
+Description=Botgok service
+After=network.target
+
+[Service]
+ExecStart=/var/bot-deployment/virtualenv/bin/start-bot \
+        --config_file=/var/bot-deployment/config.json
+PIDFile=/var/run/botgok-service
+
+[Install]
+WantedBy=default.target
