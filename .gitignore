@@ -1,0 +1,7 @@
+*.pyc
+config.json
+.idea
+.tox
+.cache
+*.egg-info
+MANIFEST
