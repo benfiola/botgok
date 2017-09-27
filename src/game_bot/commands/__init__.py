@@ -17,8 +17,9 @@ class BaseCommand(object):
         self.logger.debug("Created {}".format(self.__class__.__name__))
 
     def configure(self, configuration):
-        self.config = self.config_class(**configuration.commands.get(self.key))
+        self.config = self.config_class(**configuration.commands.get(self.key, {}))
         if self.config.enabled:
+            self.logger.debug("Enabled {}".format(self.__class__.__name__))
             from game_bot.bot import current_bot
             current_bot.register_command(self.key, self.on_command)
 
