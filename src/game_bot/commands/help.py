@@ -16,7 +16,8 @@ class HelpCommand(BaseCommand):
             "i make up for my lack of intelligence by being really charming.",
             "here are some commands you can try:\n"
         ]
-        for command in current_bot.command_handlers:
+        commands = sorted(current_bot.command_handlers.keys())
+        for command in commands:
             lines.append("\t{}".format(command))
         return "\n".join(lines)
 
