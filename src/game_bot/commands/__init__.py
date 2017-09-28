@@ -10,8 +10,9 @@ class BaseCommandConfiguration(object):
 
 @create_logger()
 class BaseCommand(object):
-    def __init__(self, key, config_class=BaseCommandConfiguration):
+    def __init__(self, key, *aliases, config_class=BaseCommandConfiguration):
         self.key = key
+        self.aliases = aliases
         self.config_class = config_class
         self.config = config_class()
         self.logger.debug("Created {}".format(self.__class__.__name__))
@@ -21,7 +22,9 @@ class BaseCommand(object):
         if self.config.enabled:
             self.logger.debug("Enabled {}".format(self.__class__.__name__))
             from game_bot.bot import current_bot
-            current_bot.register_command(self.key, self.on_command)
+            current_bot.register_command(self.key, self)
+            for alias in self.aliases:
+                current_bot.register_command(alias, self)
 
     def on_command(self, message_obj, *tokens, **kwargs):
         raise UnimplementedMethodException.create(self.__class__.__name__, "on_command")

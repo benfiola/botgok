@@ -2,13 +2,12 @@ from game_bot.bot import current_bot
 from game_bot.logging import create_logger
 from game_bot.commands import BaseCommand
 import asyncio
-import random
 
 
 @create_logger()
 class HelpCommand(BaseCommand):
     def __init__(self):
-        super().__init__("help")
+        super().__init__("help", "?")
 
     def generate_help(self):
         lines = [
@@ -16,9 +15,11 @@ class HelpCommand(BaseCommand):
             "i make up for my lack of intelligence by being really charming.",
             "here are some commands you can try:\n"
         ]
-        commands = sorted(current_bot.command_handlers.keys())
-        for command in commands:
-            lines.append("\t{}".format(command))
+        main_commands = sorted(list(set([command_handler.key for command_handler in current_bot.command_handlers.values()])))
+        for command in main_commands:
+            handler = current_bot.command_handlers[command]
+            all_commands = " | ".join([handler.key, *handler.aliases])
+            lines.append("\t{}".format(all_commands))
         return "\n".join(lines)
 
     @asyncio.coroutine

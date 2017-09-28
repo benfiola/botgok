@@ -1,4 +1,5 @@
 import discord
+from game_bot.exceptions import ExistingHandlerException
 from game_bot.logging import create_logger, configure_logger
 from game_bot.commands import find_all_commands
 import asyncio
@@ -32,7 +33,10 @@ class Bot(object):
             command.configure(configuration)
 
     def register_command(self, command, handler):
+        if command in self.command_handlers:
+            raise ExistingHandlerException.create(command, handler.__class__.__name__)
         self.command_handlers[command] = handler
+        self.logger.debug("Registered {} with {}".format(command, handler.__class__.__name__))
 
     def run(self, *args, **kwargs):
         self.logger.debug("Client is running.")
@@ -64,6 +68,7 @@ class Bot(object):
             command = message_tokens[1]
             if command in self.command_handlers:
                 try:
-                    yield from self.command_handlers[command](message, *message_tokens[2:])
+                    handler = self.command_handlers[command]
+                    yield from handler.on_command(message, *message_tokens[2:])
                 except Exception as e:
                     self.logger.exception(e)

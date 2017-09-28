@@ -8,7 +8,7 @@ import random
 @create_logger()
 class GreetCommand(BaseCommand):
     def __init__(self):
-        super().__init__("greet")
+        super().__init__("greet", "g")
 
     def get_random_greeting(self, name):
         valid_greetings = [

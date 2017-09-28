@@ -8,7 +8,7 @@ import random
 @create_logger()
 class ShitpoastCommand(BaseCommand):
     def __init__(self):
-        super().__init__("shitpoast")
+        super().__init__("shitpoast", "sp")
 
     def get_random_shitpoast(self, name):
         valid_shitpoasts = [
