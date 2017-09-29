@@ -14,7 +14,7 @@ class CatsCommand(BaseCommand):
         client = current_bot.integrations.cat_facts_client
         yield from current_bot.discord_client.send_message(
             message_obj.channel,
-            client.get_cat_fact()
+            "*{}*".format(client.get_cat_fact())
         )
 
 
