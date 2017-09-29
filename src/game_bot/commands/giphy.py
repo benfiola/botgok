@@ -14,13 +14,13 @@ class GiphyCommand(BaseCommand):
         if search_term:
             search_term = " ".join(search_term)
             result = current_bot.integrations.giphy_client.gif_search(search_term)
-            if result:
-                yield from current_bot.discord_client.send_message(
-                    message_obj.channel,
-                    result
-                )
-            else:
-                yield from current_bot.discord_client.send_message(
-                    message_obj.channel,
-                    "beep-boop!\n\t*cannot compute GIF for {}!*".format(search_term)
-                )
+        else:
+            result = current_bot.integrations.giphy_client.random_gif()
+        if not result:
+            result = "beep-boop!\n\t*cannot compute GIF{}*".format(
+                " for {}".format(search_term) if search_term else ""
+            )
+        yield from current_bot.discord_client.send_message(
+            message_obj.channel,
+            result
+        )
