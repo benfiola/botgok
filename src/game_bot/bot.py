@@ -56,22 +56,15 @@ class Bot(object):
         self.discord_client.run(self.configuration.discord.api_token)
 
     @classmethod
-    def from_command_line(cls):
+    def start_bot(cls):
         import argparse
         from game_bot.configuration import Configuration
         argparser = argparse.ArgumentParser()
         argparser.add_argument("--config_file", type=str, required=True)
         args = argparser.parse_args()
-
         bot = cls()
         bot.configure(Configuration.from_json_file(args.config_file))
-        return bot
-
-    @classmethod
-    def start_bot(cls):
-        import sys
-        Bot.from_command_line().run()
-        sys.exit(0)
+        bot.run()
 
     @asyncio.coroutine
     def on_message(self, message):

@@ -1,6 +1,7 @@
-from game_bot import Bot
+from game_bot import Bot, Configuration
 
 
-bot = Bot.from_command_line()
+bot = Bot()
+bot.configure(Configuration.from_json_file("config.json"))
 bot.run()
 

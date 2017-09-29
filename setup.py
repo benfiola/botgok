@@ -14,14 +14,24 @@ setup(
     include_package_data=True,
     zip_safe=False,
 
+    scripts=[
+        "bot_server.wsgi"
+    ],
+
     entry_points={
-        "console_scripts": ["start-bot=game_bot.bot:Bot.start_bot"]
+        "console_scripts": [
+            "start-bot=game_bot.bot:Bot.start_bot",
+            "start-bot-server=game_bot_server.app:App.start_bot_server"
+        ]
     },
+
     install_requires=[
         "discord.py",
         "steam",
         "pytest",
         "tox",
-        "requests"
+        "requests",
+        "flask",
+        "mod_wsgi"
     ]
 )

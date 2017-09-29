@@ -1,0 +1,2 @@
+graft src/game_bot_server/ui/static
+graft src/game_bot_server/ui/templates

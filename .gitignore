@@ -1,6 +1,6 @@
 *.pyc
 junit*.xml
-config.json
+*.json
 .idea
 .tox
 .cache
