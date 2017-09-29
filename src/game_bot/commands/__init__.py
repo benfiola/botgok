@@ -15,7 +15,7 @@ class BaseCommand(object):
         self.aliases = aliases
         self.config_class = config_class
         self.config = config_class()
-        self.logger.debug("Created {}".format(self.__class__.__name__))
+        self.logger.debug("Created command {}".format(self.__class__.__name__))
 
     def configure(self, configuration):
         self.config = self.config_class(**configuration.commands.get(self.key, {}))

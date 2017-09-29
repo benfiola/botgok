@@ -13,6 +13,7 @@ class BaseIntegration(object):
         self.key = key
         self.config_class = config_class
         self.config = self.config_class()
+        self.logger.debug("Created integration {}".format(self.__class__.__name__))
 
     def configure(self, configuration):
         self.config = self.config_class(**configuration.integrations.get(self.key, {}))

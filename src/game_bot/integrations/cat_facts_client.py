@@ -13,7 +13,7 @@ class CatFactsClient(BaseIntegration):
         super().__init__("cat_facts_client", config_class=self.Configuration)
 
     def get_cat_fact(self):
-        endpoint = "{}/{}".format(self.config.api_url, "fact")
+        endpoint = "{}/fact".format(self.config.api_url)
         response = requests.get(endpoint)
         if response.status_code == 200:
             return response.json()['fact']
