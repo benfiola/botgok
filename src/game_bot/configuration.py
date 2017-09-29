@@ -13,17 +13,16 @@ class Configuration(object):
             self.file = file
             self.console = console
 
-    def __init__(self, discord=None, logging=None, commands=None, **kwargs):
-        if discord is None:
-            discord = {}
-        if logging is None:
-            logging = {}
-        if commands is None:
-            commands = {}
+    def __init__(self, **kwargs):
+        discord = kwargs.pop("discord", {})
+        logging = kwargs.pop("logging", {})
+        integrations = kwargs.pop("integrations", {})
+        commands = kwargs.pop("commands", {})
 
         self.discord = self.DiscordConfiguration(**discord)
         self.logging = self.LoggingConfiguration(**logging)
         self.commands = commands
+        self.integrations = integrations
 
     @classmethod
     def from_json_file(cls, json_file):

@@ -21,6 +21,7 @@ setup(
         "discord.py",
         "steam",
         "pytest",
-        "tox"
+        "tox",
+        "requests"
     ]
 )

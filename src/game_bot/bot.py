@@ -1,7 +1,8 @@
 import discord
-from game_bot.exceptions import ExistingHandlerException
+from game_bot.exceptions import AlreadyExistsException
 from game_bot.logging import create_logger, configure_logger
 from game_bot.commands import find_all_commands
+from game_bot.integrations import find_all_integrations
 import asyncio
 
 current_bot = None
@@ -11,7 +12,7 @@ current_bot = None
 class Bot(object):
     def __init__(self):
         self.discord_client = None
-        self.steam_client = None
+        self.integrations = IntegrationObject()
         self.configuration = None
         self.command_handlers = {}
 
@@ -23,20 +24,32 @@ class Bot(object):
         self.logger.debug("Configuring Bot")
 
         self.configuration = configuration
+        self.integrations = IntegrationObject()
         self.command_handlers = {}
         self.discord_client = discord.Client()
         self.discord_client.event(self.on_message)
+
+        found_integrations = find_all_integrations()
+        self.logger.debug("Found {} integrations".format(len(found_integrations)))
+        for integration in found_integrations:
+            integration.configure(configuration)
 
         found_commands = find_all_commands()
         self.logger.debug("Found {} commands".format(len(found_commands)))
         for command in found_commands:
             command.configure(configuration)
 
+    def register_integration(self, key, integration):
+        if key in self.integrations:
+            raise AlreadyExistsException.create("integration", key)
+        self.integrations[key] = integration
+        self.logger.debug("Registered integration {} with {}".format(key, integration.__class__.__name__))
+
     def register_command(self, command, handler):
         if command in self.command_handlers:
-            raise ExistingHandlerException.create(command, handler.__class__.__name__)
+            raise AlreadyExistsException.create("command", command)
         self.command_handlers[command] = handler
-        self.logger.debug("Registered {} with {}".format(command, handler.__class__.__name__))
+        self.logger.debug("Registered command {} with {}".format(command, handler.__class__.__name__))
 
     def run(self, *args, **kwargs):
         self.logger.debug("Client is running.")
@@ -71,4 +84,17 @@ class Bot(object):
                     handler = self.command_handlers[command]
                     yield from handler.on_command(message, *message_tokens[2:])
                 except Exception as e:
+                    yield from self.discord_client.send_message(
+                        message.channel,
+                        "*failure to compute intensifies*\nbeep-boop!  check my diagnostic logs!"
+                    )
                     self.logger.exception(e)
+
+
+class IntegrationObject(dict):
+    def __init__(self):
+        super().__init__()
+
+    def __getattr__(self, attr):
+        return self.get(attr, None)
+
