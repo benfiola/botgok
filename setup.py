@@ -4,7 +4,7 @@ from glob import glob
 from os.path import splitext, basename
 
 setup(
-    name="game_bot",
+    name="botgok",
     version="0.0.1",
     author="Ben Fiola",
     author_email="benfiola@gmail.com",
@@ -15,13 +15,13 @@ setup(
     zip_safe=False,
 
     scripts=[
-        "bot_server.wsgi"
+        "botgok_server.wsgi"
     ],
 
     entry_points={
         "console_scripts": [
-            "start-bot=game_bot.bot:Bot.start_bot",
-            "start-bot-server=game_bot_server.app:App.start_bot_server"
+            "start-botgok=botgok.bot:Bot.start_bot",
+            "start-botgok-server=botgok_server.app:App.start_bot_server"
         ]
     },
 

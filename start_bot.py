@@ -1,4 +1,4 @@
-from game_bot import Bot, Configuration
+from botgok import Bot, Configuration
 
 
 bot = Bot()

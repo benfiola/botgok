@@ -1,4 +1,4 @@
-from game_bot_server import App, Configuration
+from botgok_server import App, Configuration
 
 
 app = App()
