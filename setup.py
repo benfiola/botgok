@@ -15,7 +15,8 @@ setup(
     zip_safe=False,
 
     scripts=[
-        "botgok_server.wsgi"
+        "botgok_server.wsgi",
+        "build_botgok_frontend"
     ],
 
     entry_points={
