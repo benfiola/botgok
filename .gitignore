@@ -5,4 +5,4 @@ junit*.xml
 .tox
 .cache
 *.egg-info
-MANIFEST
+node_modules
