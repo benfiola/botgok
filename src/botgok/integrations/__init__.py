@@ -1,5 +1,5 @@
-from game_bot.utils import dynamic_package_import
-from game_bot.logging import create_logger
+from botgok.utils import dynamic_package_import
+from botgok.logging import create_logger
 
 
 class BaseIntegrationConfiguration(object):
@@ -19,7 +19,7 @@ class BaseIntegration(object):
         self.config = self.config_class(**configuration.integrations.get(self.key, {}))
         if self.config.enabled:
             self.logger.debug("Configuring {}".format(self.__class__.__name__))
-            from game_bot.bot import current_bot
+            from botgok.bot import current_bot
             current_bot.register_integration(self.key, self)
 
 

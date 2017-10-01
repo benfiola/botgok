@@ -1,5 +1,5 @@
 import pytest
-from game_bot.configuration import Configuration
+from botgok.configuration import Configuration
 
 
 class TestSuite():

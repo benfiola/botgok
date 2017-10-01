@@ -1,5 +1,5 @@
-from game_bot.integrations import BaseIntegration, BaseIntegrationConfiguration
-from game_bot.exceptions import CommandException
+from botgok.integrations import BaseIntegration, BaseIntegrationConfiguration
+from botgok.exceptions import CommandException
 import requests
 
 

@@ -1,6 +1,6 @@
-from game_bot.bot import current_bot
-from game_bot.logging import create_logger
-from game_bot.commands import BaseCommand
+from botgok.bot import current_bot
+from botgok.logging import create_logger
+from botgok.commands import BaseCommand
 import asyncio
 
 

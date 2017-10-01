@@ -1,4 +1,4 @@
-from game_bot_server.utils import dynamic_package_import
+from botgok_server.utils import dynamic_package_import
 
 
 def import_apis():

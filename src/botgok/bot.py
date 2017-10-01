@@ -1,8 +1,8 @@
 import discord
-from game_bot.exceptions import AlreadyExistsException
-from game_bot.logging import create_logger, configure_logger
-from game_bot.commands import find_all_commands
-from game_bot.integrations import find_all_integrations
+from botgok.exceptions import AlreadyExistsException
+from botgok.logging import create_logger, configure_logger
+from botgok.commands import find_all_commands
+from botgok.integrations import find_all_integrations
 import asyncio
 
 current_bot = None
@@ -58,7 +58,7 @@ class Bot(object):
     @classmethod
     def start_bot(cls):
         import argparse
-        from game_bot.configuration import Configuration
+        from botgok.configuration import Configuration
         argparser = argparse.ArgumentParser()
         argparser.add_argument("--config_file", type=str, required=True)
         args = argparser.parse_args()

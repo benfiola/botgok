@@ -16,8 +16,8 @@ class App(Flask):
     def configure(self, configuration):
         self.port = configuration.port
 
-        from game_bot_server.api import import_apis
-        from game_bot_server.ui import static, templates, import_ui_routes
+        from botgok_server.api import import_apis
+        from botgok_server.ui import static, templates, import_ui_routes
         import os
 
         import_apis()
@@ -33,7 +33,7 @@ class App(Flask):
     @classmethod
     def start_bot_server(cls):
         import argparse
-        from game_bot_server.configuration import Configuration
+        from botgok_server.configuration import Configuration
 
         argparser = argparse.ArgumentParser()
         argparser.add_argument("--config_file", type=str, required=True)

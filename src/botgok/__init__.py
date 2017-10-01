@@ -1,2 +1,2 @@
-from game_bot.bot import Bot
-from game_bot.configuration import Configuration
+from botgok.bot import Bot
+from botgok.configuration import Configuration

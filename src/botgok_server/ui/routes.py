@@ -1,4 +1,4 @@
-from game_bot_server.app import current_app
+from botgok_server.app import current_app
 from flask import render_template
 
 

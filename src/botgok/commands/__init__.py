@@ -1,6 +1,6 @@
-from game_bot.utils import dynamic_package_import
-from game_bot.logging import create_logger
-from game_bot.exceptions import UnimplementedMethodException
+from botgok.utils import dynamic_package_import
+from botgok.logging import create_logger
+from botgok.exceptions import UnimplementedMethodException
 
 
 class BaseCommandConfiguration(object):
@@ -21,7 +21,7 @@ class BaseCommand(object):
         self.config = self.config_class(**configuration.commands.get(self.key, {}))
         if self.config.enabled:
             self.logger.debug("Enabled {}".format(self.__class__.__name__))
-            from game_bot.bot import current_bot
+            from botgok.bot import current_bot
             current_bot.register_command(self.key, self)
             for alias in self.aliases:
                 current_bot.register_command(alias, self)

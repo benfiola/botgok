@@ -1,5 +1,5 @@
-import game_bot_server.ui.static
-import game_bot_server.ui.templates
+import botgok_server.ui.static
+import botgok_server.ui.templates
 
 def import_ui_routes():
-    import game_bot_server.ui.routes
+    import botgok_server.ui.routes

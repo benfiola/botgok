@@ -2,7 +2,7 @@ import logging
 import os
 
 
-ROOT_LOGGER_KEY = "game_bot"
+ROOT_LOGGER_KEY = "botgok"
 DATE_FMT = "%m/%d/%Y %H:%M:%S"
 FMT = '[%(levelname)s][%(asctime)s][%(module)s]: %(message)s'
 
