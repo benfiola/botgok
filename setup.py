@@ -16,7 +16,6 @@ setup(
 
     scripts=[
         "botgok_server.wsgi",
-        "build_botgok_frontend"
     ],
 
     entry_points={
