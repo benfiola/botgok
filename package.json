@@ -27,10 +27,12 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.7",
     "prop-types": "^15.6.0",
-    "react": "^16.0.0",
+    "react": "~16.0.0",
     "react-bootstrap": "^0.31.3",
     "react-dom": "^16.0.0",
     "style-loader": "^0.18.2",
-    "webpack": "^3.6.0"
+    "webpack": "^3.6.0",
+    "redux": "~3.7.2",
+    "react-redux": "~5.0.6"
   }
 }
