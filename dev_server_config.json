@@ -1,0 +1,7 @@
+{
+  "DATABASE_NAME": "game_bot",
+  "DATABASE_USERNAME": "testuser",
+  "DATABASE_PASSWORD": "testpassword",
+  "DATABASE_DIALECT": "postgresql",
+  "DATABASE_URL": "localhost:5432"
+}
