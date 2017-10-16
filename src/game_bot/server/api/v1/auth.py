@@ -11,4 +11,4 @@ def authentication(username, password):
 @jwt.identity_handler
 def identity(payload):
     with db as session:
-        return session.query(User).filter(User.id == payload["user_id"]).one()
+        return session.query(User).filter(User.id == payload["identity"]).one()

@@ -25,8 +25,7 @@ class SQLAlchemy(object):
 
     def __enter__(self):
         self.context_count += 1
-        import game_bot.server.database.models
-        return self.Session(), self.tables
+        return self.Session()
 
     def __exit__(self, exc_type, exc_val, exc_traceback):
         self.context_count -= 1

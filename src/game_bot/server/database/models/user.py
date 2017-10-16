@@ -11,7 +11,7 @@ class User(Base):
     password = Column(String, nullable=False)
     admin = Column(Boolean, nullable=False, default=False)
 
-    def __init__(self, id, username, password, admin):
+    def __init__(self, username, password, admin, id=None):
         self.id = id
         self.username = username
         self.password = bcrypt.generate_password_hash(

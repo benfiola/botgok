@@ -1,7 +1,8 @@
 {
-  "DATABASE_NAME": "game_bot",
-  "DATABASE_USERNAME": "testuser",
-  "DATABASE_PASSWORD": "testpassword",
   "DATABASE_DIALECT": "postgresql",
-  "DATABASE_URL": "localhost:5432"
+  "DATABASE_NAME": "game_bot",
+  "DATABASE_PASSWORD": "testpassword",
+  "DATABASE_URL": "localhost:5432",
+  "DATABASE_USERNAME": "testuser",
+  "JWT_SECRET_KEY": "totally-not-secret"
 }
