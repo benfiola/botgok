@@ -1,0 +1,40 @@
+{
+  "name": "game-bot-server-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/game_bot/server_ui/index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benfiola/botgok.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benfiola/botgok/issues"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js --progress --colors",
+    "dev": "webpack --config webpack.config.js --progress --colors --watch",
+    "test": "jest",
+    "test-coverage": "jest --coverage"
+  },
+  "homepage": "https://github.com/benfiola/botgok#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "jest": "^21.2.1",
+    "react": "^16.0.0",
+    "react-bootstrap": "^0.31.3",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.7.1"
+  }
+}
