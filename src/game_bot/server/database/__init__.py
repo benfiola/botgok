@@ -15,7 +15,7 @@ class SQLAlchemy(object):
         self.tables = None
 
     def init_app(self, app):
-        self.configure(DatabaseConfiguration.from_app_config(app.config))
+        self.configure(DatabaseConfiguration.from_dict(app.config))
         app.extensions['db'] = self
 
     def configure(self, configuration):

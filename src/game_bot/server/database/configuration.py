@@ -9,13 +9,13 @@ class DatabaseConfiguration(object):
         self.dialect = dialect
 
     @classmethod
-    def from_app_config(cls, app_config):
+    def from_dict(cls, config_dict):
         return cls(
-            username=app_config["DATABASE_USERNAME"],
-            password=app_config["DATABASE_PASSWORD"],
-            url=app_config["DATABASE_URL"],
-            name=app_config["DATABASE_NAME"],
-            dialect=app_config["DATABASE_DIALECT"]
+            username=config_dict["DATABASE_USERNAME"],
+            password=config_dict["DATABASE_PASSWORD"],
+            url=config_dict["DATABASE_URL"],
+            name=config_dict["DATABASE_NAME"],
+            dialect=config_dict["DATABASE_DIALECT"]
         )
 
     def engine_url(self):

@@ -1,7 +1,10 @@
 from __future__ import with_statement
 from alembic import context
-from sqlalchemy import engine_from_config, pool
+from sqlalchemy import create_engine
 from logging.config import fileConfig
+import os
+import json
+from game_bot.server.database.configuration import DatabaseConfiguration
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -23,6 +26,16 @@ target_metadata = None
 # ... etc.
 
 
+def get_database_config():
+    config_file = context.get_x_argument(as_dictionary=True).get("config_file")
+    if config_file is None:
+        raise ValueError("Missing argument: config_file.  as -x config_file=<file_path>")
+    if not os.path.exists(config_file) or not os.path.isfile(config_file):
+        raise ValueError("Config file at location {} is invalid".format(config_file))
+    with open(config_file, 'r') as f:
+        return DatabaseConfiguration.from_dict(json.loads(f.read()))
+
+
 def run_migrations_offline():
     """Run migrations in 'offline' mode.
 
@@ -35,9 +48,9 @@ def run_migrations_offline():
     script output.
 
     """
-    url = config.get_main_option("sqlalchemy.url")
+    database_config = get_database_config()
     context.configure(
-        url=url, target_metadata=target_metadata, literal_binds=True)
+        url=database_config.engine_url(), target_metadata=target_metadata, literal_binds=True)
 
     with context.begin_transaction():
         context.run_migrations()
@@ -50,10 +63,8 @@ def run_migrations_online():
     and associate a connection with the context.
 
     """
-    connectable = engine_from_config(
-        config.get_section(config.config_ini_section),
-        prefix='sqlalchemy.',
-        poolclass=pool.NullPool)
+    database_config = get_database_config()
+    connectable = create_engine(database_config.engine_url())
 
     with connectable.connect() as connection:
         context.configure(
@@ -63,6 +74,7 @@ def run_migrations_online():
 
         with context.begin_transaction():
             context.run_migrations()
+
 
 if context.is_offline_mode():
     run_migrations_offline()
