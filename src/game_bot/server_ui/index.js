@@ -10,7 +10,7 @@ import createHistory from 'history/createBrowserHistory';
 import { Route } from 'react-router';
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 
-import { TestComponent } from './components/TestComponent.jsx';
+import { App } from './components/App.jsx';
 import { reducers } from './reducers/index.jsx';
 
 const history = createHistory();
@@ -26,7 +26,7 @@ console.log(ConnectedRouter);
 render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
-            <TestComponent />
+            <App />
         </ConnectedRouter>
     </Provider>,
     document.getElementById('container')
