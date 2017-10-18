@@ -1,7 +1,7 @@
 import React from 'react';
 import { Jumbotron } from 'react-bootstrap';
 
-export default class TestComponent extends React.Component {
+export class TestComponent extends React.Component {
     render() {
         return (
             <Jumbotron>
