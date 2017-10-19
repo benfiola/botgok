@@ -14,3 +14,5 @@ def authentication(username, password):
 def identity(payload):
     with db as session:
         return session.query(User).filter(User.id == payload["identity"]).one()
+
+

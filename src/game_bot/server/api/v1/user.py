@@ -12,10 +12,37 @@ def get_user(user_id=None):
         return Response(status=401)
     if user_id is not None and (current_identity.id != user_id and not current_identity.admin):
         return Response(status=401)
-    pass
+
+    with db as session:
+        if user_id is None:
+            data = [user.to_json() for user in session.query(User).all()]
+            return jsonify(result=data, status=200)
+
+        else:
+            user = session.query(User).filter(User.id == user_id).one_or_none()
+            if user is None:
+                return Response("User with id {} does not exist".format(user_id), status=400)
+            return jsonify(result=user.to_json(), status=200)
+
+
+@app.route('/api/v1/user/<int:user_id>', methods=['DELETE'])
+@jwt_required()
+def delete_user(user_id):
+    if current_identity.id != user_id and not current_identity.admin:
+        return Response(status=401)
+
+    with db as session:
+        user = session.query(User).filter(User.id == user_id).one_or_none()
+
+        if user is None:
+            return Response("User with id {} does not exist".format(user_id))
+
+        session.delete(user)
+    return Response(status=204)
 
 
 @app.route('/api/v1/user', methods=['POST'])
+@jwt_required()
 def add_user():
     data = request.json
 

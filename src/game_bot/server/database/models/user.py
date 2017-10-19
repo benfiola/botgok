@@ -18,3 +18,10 @@ class User(Base):
             password, app.config.get('BCRYPT_LOG_ROUNDS')
         ).decode()
         self.admin = admin
+
+    def to_json(self):
+        return {
+            "id": self.id,
+            "username": self.username,
+            "admin": self.admin
+        }
