@@ -14,9 +14,7 @@ class User(Base):
     def __init__(self, username, password, admin, id=None):
         self.id = id
         self.username = username
-        self.password = bcrypt.generate_password_hash(
-            password, app.config.get('BCRYPT_LOG_ROUNDS')
-        ).decode()
+        self.password = self.hash_password(password)
         self.admin = admin
 
     def to_json(self):
@@ -25,3 +23,31 @@ class User(Base):
             "username": self.username,
             "admin": self.admin
         }
+
+    @classmethod
+    def hash_password(cls, password):
+        return bcrypt.generate_password_hash(
+            password, app.config.get('BCRYPT_LOG_ROUNDS')
+        ).decode()
+
+    @classmethod
+    def temp_admin_user(cls, password=None):
+        from game_bot.server import db
+        with db as session:
+            temp_user = session.query(cls).filter(
+                cls.username == "setup_user",
+            ).first()
+            if password:
+                if temp_user is None:
+                    temp_user = cls(
+                        username="setup_user",
+                        admin=True,
+                        password=password
+                    )
+                else:
+                    temp_user.password = cls.hash_password(password)
+                session.add(temp_user)
+        return temp_user
+
+
+
