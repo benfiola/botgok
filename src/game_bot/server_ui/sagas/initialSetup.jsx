@@ -6,11 +6,9 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 
 export function* initializeInitialSetup() {
     try {
-        const value = yield performInitialSetupCheck();
-        if(value) {
-            yield put(Actions.setLoading(true));
+        yield put(Actions.setLoading(true));
+        if(yield* performInitialSetupCheck()) {
             const temporaryFilePath = yield call(API.initialize);
-            console.log(temporaryFilePath);
             yield put(Actions.receiveTemporaryPasswordFile(temporaryFilePath));
         }
     } catch(error) {
@@ -22,6 +20,7 @@ export function* initializeInitialSetup() {
 
 export function* authorizeTemporaryPassword(action) {
     try {
+        yield put(Actions.setLoading(true));
         if(yield* performInitialSetupCheck()) {
             const accessToken = yield call(AuthAPI.authenticate, "setup_user", action.enteredPassword);
             yield put(Actions.receiveTemporaryAccessToken(accessToken));
@@ -29,6 +28,8 @@ export function* authorizeTemporaryPassword(action) {
         }
     } catch(error) {
         yield* handleError(error);
+    } finally {
+        yield put(Actions.setLoading(false));
     }
 }
 
@@ -37,17 +38,20 @@ export function* performInitialSetupCheck() {
     if(!value) {
         yield put(push("/login"));
     }
-    yield value;
+    return value;
 }
 
 export function* createFirstAdminAccount(action) {
     try {
+        yield put(Actions.setLoading(true));
         if(yield* performInitialSetupCheck()) {
             yield call(API.create_admin_user, action.temporaryAccessToken, action.enteredUsername, action.enteredPassword);
             yield put(push("/wizard/integrations"))
         }
     } catch(error) {
         yield* handleError(error);
+    } finally {
+        yield put(Actions.setLoading(false));
     }
 }
 

@@ -20,7 +20,6 @@ export class Auth {
             }
             throw createErrorFromResponse(response);
         }).then((json) => {
-            console.log(json);
             return json.access_token;
         })
     }
