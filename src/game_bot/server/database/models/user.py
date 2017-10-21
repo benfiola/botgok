@@ -11,6 +11,8 @@ class User(Base):
     password = Column(String, nullable=False)
     admin = Column(Boolean, nullable=False, default=False)
 
+    TEMP_ADMIN_USERNAME = "setup_user"
+
     def __init__(self, username, password, admin, id=None):
         self.id = id
         self.username = username
@@ -31,21 +33,20 @@ class User(Base):
         ).decode()
 
     @classmethod
-    def temp_admin_user(cls, password=None):
+    def temp_admin_user(cls):
         from game_bot.server import db
+        import uuid
         with db as session:
             temp_user = session.query(cls).filter(
-                cls.username == "setup_user",
+                cls.username == cls.TEMP_ADMIN_USERNAME,
             ).first()
-            if password:
-                if temp_user is None:
-                    temp_user = cls(
-                        username="setup_user",
-                        admin=True,
-                        password=password
-                    )
-                else:
-                    temp_user.password = cls.hash_password(password)
+            if temp_user is None:
+                temp_user = cls(
+                    username=cls.TEMP_ADMIN_USERNAME,
+                    password=cls.hash_password(str(uuid.uuid4())),
+                    admin=True,
+                    id=None
+                )
                 session.add(temp_user)
         return temp_user
 

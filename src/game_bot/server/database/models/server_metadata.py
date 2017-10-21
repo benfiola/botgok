@@ -18,36 +18,25 @@ class ServerMetadata(Base):
         self.value = value
 
     @classmethod
-    def _get(cls, key, default_value=None):
+    def _get_or_insert(cls, key, default_value):
         from game_bot.server import db
         with db as session:
-            result = session.query(cls).filter(
+            metadata = session.query(cls).filter(
                 cls.key == key
             ).first()
-            if result is None:
-                result = cls(
+            if not metadata:
+                metadata = cls(
                     key=key,
-                    value=default_value
+                    value=default_value,
                 )
-                session.add(result)
-        return result
+                session.add(metadata)
+        return metadata
 
     @classmethod
-    def needs_initial_setup(cls, value=None):
-        from game_bot.server import db
-        with db as session:
-            result = cls._get(cls.NEEDS_INITIAL_SETUP, True)
-            if value is not None:
-                result.value = value
-                session.add(result)
-        return bool(result.value)
+    def needs_initial_setup(cls):
+        return cls._get_or_insert(cls.NEEDS_INITIAL_SETUP, True)
 
     @classmethod
-    def temporary_password_file(cls, value=None):
-        from game_bot.server import db
-        with db as session:
-            result = cls._get(cls.TEMPORARY_PASSWORD_FILE)
-            if value is not None:
-                result.value = value
-                session.add(result)
-        return result.value
+    def temporary_password_file(cls):
+        return cls._get_or_insert(cls.TEMPORARY_PASSWORD_FILE, None)
+
