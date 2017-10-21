@@ -14,6 +14,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onCreate() {
             dispatch(InitialSetup.initializeStepOne());
+        },
+        onSubmit(enteredPassword) {
+            dispatch(InitialSetup.authorizeStepOne(enteredPassword));
         }
     }
 };

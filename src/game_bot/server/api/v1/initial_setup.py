@@ -40,7 +40,7 @@ def initial_setup_initialize():
 
 
 @app.route('/api/v1/initial_setup/create_admin_user', methods=['POST'])
-@jwt_required
+@jwt_required()
 def initial_setup_create_admin_user():
     with db as session:
         needs_initial_setup = ServerMetadata.needs_initial_setup()

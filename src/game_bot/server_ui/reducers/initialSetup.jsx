@@ -2,7 +2,8 @@ import { InitialSetup as Actions } from '../actions/initialSetup.jsx';
 
 const initialState = {
     loading: false,
-    temporaryPasswordFile: null
+    temporaryPasswordFile: null,
+    temporaryAccessToken: null
 };
 
 export const initialSetup = (state = initialState, action) => {
@@ -11,6 +12,12 @@ export const initialSetup = (state = initialState, action) => {
             return {
                 ...state,
                 temporaryPasswordFile: action.temporaryPasswordFile
+            }
+        }
+        case Actions.AUTHORIZE_STEP_ONE_COMPLETE: {
+            return {
+                ...state,
+                temporaryAccessToken: action.temporaryAccessToken
             }
         }
         case Actions.SET_LOADING: {
