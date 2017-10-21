@@ -1,5 +1,7 @@
 import React from 'react';
 import { FormControl, ControlLabel, Button } from 'react-bootstrap';
+import { Title, Content } from '../Shared/index.jsx';
+import styles from './Common.css';
 
 export class TemporaryPassword extends React.Component {
     constructor(props) {
@@ -12,9 +14,13 @@ export class TemporaryPassword extends React.Component {
     }
 
     onInputChange(e) {
+        let enteredText = e.target.value;
         this.setState({
-            enteredPassword: e.target.value
+            enteredPassword: enteredText
         });
+        if(enteredText) {
+            this.props.onSubmit(enteredText)
+        }
     }
 
     onSubmit() {
@@ -24,22 +30,25 @@ export class TemporaryPassword extends React.Component {
     }
 
     render() {
-        if(this.props.loading) {
-            return <div>Loading</div>
-        } else {
-            return (
-                <div>
-                    <ControlLabel>Enter the temporary password located at {this.props.temporaryPasswordFile}</ControlLabel>
+        return (
+            <div>
+                <Title>Temporary Password</Title>
+                <Content className={styles.contentPanel}>
+                    <div className={styles.instructionSection}>
+                        <p className={styles.bigShoutout}>Why, hello there.</p>
+                        <p>It looks like you're just getting started with game_bot.</p>
+                        <p>Could you do me a solid?  Run the following command on your server, and tell me what you get.</p>
+                        <pre>cat {this.props.temporaryPasswordFile}</pre>
+                    </div>
                     <FormControl
                         type="text"
-                        placeholder="Enter temporary password"
+                        placeholder="Drop that temporary password in here all careful like."
                         value={this.state.value}
                         onChange={this.onInputChange}
                     />
-                    <Button onClick={this.onSubmit}>Submit</Button>
-                </div>
-            );
-        }
+                </Content>
+            </div>
+        );
     }
 
     componentDidMount() {

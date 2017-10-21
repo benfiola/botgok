@@ -1,0 +1,12 @@
+:local .title-section {
+    color: #81241c;
+    font-weight: 900;
+    font-size: 48px;
+    border-bottom: 4px solid #555555;
+    margin-bottom: 20px;
+}
+
+:local .title {
+    position: relative;
+    top: 14px;
+}

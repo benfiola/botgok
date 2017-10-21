@@ -1,0 +1,12 @@
+:local .content-panel p {
+    margin-bottom: 15px;
+}
+
+:local .big-shoutout {
+    font-size: 36px;
+    font-style: italic;
+}
+
+:local .instruction-section {
+    margin-bottom: 36px;
+}

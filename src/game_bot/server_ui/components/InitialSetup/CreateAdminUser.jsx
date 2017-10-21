@@ -1,5 +1,7 @@
 import React from 'react';
-import { FormControl, ControlLabel, Button } from 'react-bootstrap';
+import { FormControl, Button } from 'react-bootstrap';
+import { Content, Title } from '../Shared/index.jsx';
+import styles from './Common.css';
 
 export class CreateAdminUser extends React.Component {
     constructor(props) {
@@ -36,22 +38,29 @@ export class CreateAdminUser extends React.Component {
     render() {
         return (
             <div>
-                <ControlLabel>Username</ControlLabel>
-                <FormControl
-                    type="text"
-                    placeholder="Enter username"
-                    value={this.state.username}
-                    onChange={this.onUsernameChange}
-                />
-                <ControlLabel>Password</ControlLabel>
-                <FormControl
-                    type="text"
-                    placeholder="Enter temporary password"
-                    value={this.state.password}
-                    onChange={this.onPasswordChange}
-                />
-                <Button onClick={this.onSubmit}>Submit</Button>
+                <Title>Create an Admin Account</Title>
+                <Content className={styles.contentPanel}>
+                    <div className={styles.instructionSection}>
+                        <p className={styles.bigShoutout}>Aw yeah, that's the stuff.</p>
+                        <p>Now that we've gotten that out of the way, it's time that you create your first admin account with me.</p>
+                    </div>
+                    <FormControl
+                        type="text"
+                        placeholder="Put your best username right here."
+                        value={this.state.username}
+                        onChange={this.onUsernameChange}
+                    />
+                    <FormControl
+                        type="text"
+                        placeholder="Put a nice secure password here."
+                        value={this.state.password}
+                        onChange={this.onPasswordChange}
+                    />
+                    <Button onClick={this.props.onSubmit}>
+                        Smash that submit button.
+                    </Button>
+                </Content>
             </div>
-        )
+        );
     }
 }

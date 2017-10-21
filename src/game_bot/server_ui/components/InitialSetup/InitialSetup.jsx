@@ -7,8 +7,8 @@ import { TemporaryPasswordContainer } from '../../containers/InitialSetup/Tempor
 export class InitialSetup extends React.Component {
     render() {
         return [
-            <Route path="/initialSetup/temporaryPassword" component={TemporaryPasswordContainer} />,
-            <Route path="/initialSetup/createAdminUser" component={CreateAdminUserContainer} />,
+            <Route key={"temporaryPassword"} path="/initialSetup/temporaryPassword" component={TemporaryPasswordContainer} />,
+            <Route key={"createAdminUser"} path="/initialSetup/createAdminUser" component={CreateAdminUserContainer} />,
          ]
     }
 }
