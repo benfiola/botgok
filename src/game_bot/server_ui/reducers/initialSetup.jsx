@@ -8,13 +8,13 @@ const initialState = {
 
 export const initialSetup = (state = initialState, action) => {
     switch(action.type) {
-        case Actions.INITIALIZE_STEP_ONE_COMPLETE: {
+        case Actions.RECEIVE_TEMPORARY_PASSWORD_FILE: {
             return {
                 ...state,
                 temporaryPasswordFile: action.temporaryPasswordFile
             }
         }
-        case Actions.AUTHORIZE_STEP_ONE_COMPLETE: {
+        case Actions.RECEIVE_TEMPORARY_ACCESS_TOKEN: {
             return {
                 ...state,
                 temporaryAccessToken: action.temporaryAccessToken

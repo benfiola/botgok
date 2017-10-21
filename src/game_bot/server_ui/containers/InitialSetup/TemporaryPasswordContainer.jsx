@@ -13,10 +13,10 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onCreate() {
-            dispatch(InitialSetup.initializeStepOne());
+            dispatch(InitialSetup.initializeInitialSetup());
         },
         onSubmit(enteredPassword) {
-            dispatch(InitialSetup.authorizeStepOne(enteredPassword));
+            dispatch(InitialSetup.authorizeTemporaryPassword(enteredPassword));
         }
     }
 };

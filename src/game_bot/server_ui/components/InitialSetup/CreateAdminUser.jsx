@@ -30,7 +30,7 @@ export class CreateAdminUser extends React.Component {
     }
 
     onSubmit() {
-        this.props.onSubmit(this.state.username, this.state.password, this.props.temporaryAccessToken);
+        this.props.onSubmit(this.props.temporaryAccessToken, this.state.username, this.state.password);
     }
 
     render() {

@@ -11,10 +11,10 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onCreate() {
-            dispatch(InitialSetup.initializeStepTwo());
+            dispatch(InitialSetup.performInitialSetupCheck());
         },
-        onSubmit(enteredUsername, enteredPassword, temporaryAccessToken) {
-            dispatch(InitialSetup.authorizeStepTwo(enteredUsername, enteredPassword, temporaryAccessToken));
+        onSubmit(temporaryAccessToken, enteredUsername, enteredPassword) {
+            dispatch(InitialSetup.createFirstAdminAccount(temporaryAccessToken, enteredUsername, enteredPassword));
         }
     }
 };

@@ -1,67 +1,59 @@
 
 
 export class InitialSetup {
-    static AUTHORIZE_STEP_ONE = "InitialSetup::AUTHORIZE_STEP_ONE";
-    static authorizeStepOne(enteredPassword) {
+    static AUTHORIZE_TEMPORARY_PASSWORD = "InitialSetup::AUTHORIZE_TEMPORARY_PASSWORD";
+    static authorizeTemporaryPassword(enteredPassword) {
         return {
-            type: this.AUTHORIZE_STEP_ONE,
+            type: this.AUTHORIZE_TEMPORARY_PASSWORD,
             enteredPassword: enteredPassword
         }
     }
 
-    static AUTHORIZE_STEP_ONE_COMPLETE = "InitialSetup::AUTHORIZE_STEP_ONE_COMPLETE";
-    static authorizeStepOneComplete(temporaryAccessToken) {
+    static RECEIVE_TEMPORARY_ACCESS_TOKEN = "InitialSetup::RECEIVE_TEMPORARY_ACCESS_TOKEN";
+    static receiveTemporaryAccessToken(temporaryAccessToken) {
         return {
-            type: this.AUTHORIZE_STEP_ONE_COMPLETE,
+            type: this.RECEIVE_TEMPORARY_ACCESS_TOKEN,
             temporaryAccessToken: temporaryAccessToken
         }
     }
 
-    static AUTHORIZE_STEP_TWO = "InitialSetup::AUTHORIZE_STEP_TWO";
-    static authorizeStepTwo(enteredUsername, enteredPassword, temporaryAccessToken) {
+    static CREATE_FIRST_ADMIN_ACCOUNT = "InitialSetup::CREATE_FIRST_ADMIN_ACCOUNT";
+    static createFirstAdminAccount(temporaryAccessToken, enteredUsername, enteredPassword) {
         return {
-            type: this.AUTHORIZE_STEP_TWO,
+            type: this.CREATE_FIRST_ADMIN_ACCOUNT,
             enteredUsername: enteredUsername,
             enteredPassword: enteredPassword,
             temporaryAccessToken: temporaryAccessToken
         }
     }
 
-    static INITIALIZE_STEP_ONE = "InitialSetup::INITIALIZE_STEP_ONE";
-    static initializeStepOne() {
+    static INITIALIZE_INITIAL_SETUP = "InitialSetup::INITIALIZE_INITIAL_SETUP";
+    static initializeInitialSetup() {
         return {
-            type: this.INITIALIZE_STEP_ONE
+            type: this.INITIALIZE_INITIAL_SETUP
         }
     }
 
-    static INITIALIZE_STEP_ONE_COMPLETE = "InitialSetup::INITIALIZE_STEP_ONE_COMPLETE";
-    static initializeStepOneComplete(temporaryPasswordFile) {
+    static RECEIVE_TEMPORARY_PASSWORD_FILE = "InitialSetup::RECEIVE_TEMPORARY_PASSWORD_FILE";
+    static receiveTemporaryPasswordFile(temporaryPasswordFile) {
         return {
-            type: this.INITIALIZE_STEP_ONE_COMPLETE,
+            type: this.RECEIVE_TEMPORARY_PASSWORD_FILE,
             temporaryPasswordFile: temporaryPasswordFile
         }
     }
 
-    static INITIALIZE_STEP_ONE_ERROR = "InitialSetup::INITIALIZE_STEP_ONE_ERROR";
-    static initializeStepOneError(error) {
+    static INITIAL_SETUP_ERROR = "InitialSetup::INITIAL_SETUP_ERROR";
+    static initialSetupError(error) {
         return {
-            type: this.INITIALIZE_STEP_ONE_ERROR,
+            type: this.INITIAL_SETUP_ERROR,
             error: error
         }
     }
 
-    static INITIALIZE_STEP_TWO = "InitialSetup::INITIALIZE_STEP_TWO";
-    static initializeStepTwo() {
+    static INITIAL_SETUP_CHECK = "InitialSetup::INITIAL_SETUP_CHECK";
+    static performInitialSetupCheck() {
         return {
-            type: this.INITIALIZE_STEP_TWO
-        }
-    }
-
-    static INITIALIZE_STEP_TWO_ERROR = "InitialSetup::INITIALIZE_STEP_TWO_ERROR";
-    static initializeStepTwoError(error) {
-        return {
-            type: this.INITIALIZE_STEP_TWO_ERROR,
-            error: error
+            type: this.INITIAL_SETUP_CHECK
         }
     }
 
