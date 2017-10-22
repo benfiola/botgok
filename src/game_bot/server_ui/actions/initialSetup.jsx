@@ -9,21 +9,12 @@ export class InitialSetup {
         }
     }
 
-    static RECEIVE_TEMPORARY_ACCESS_TOKEN = "InitialSetup::RECEIVE_TEMPORARY_ACCESS_TOKEN";
-    static receiveTemporaryAccessToken(temporaryAccessToken) {
-        return {
-            type: this.RECEIVE_TEMPORARY_ACCESS_TOKEN,
-            temporaryAccessToken: temporaryAccessToken
-        }
-    }
-
     static CREATE_FIRST_ADMIN_ACCOUNT = "InitialSetup::CREATE_FIRST_ADMIN_ACCOUNT";
-    static createFirstAdminAccount(temporaryAccessToken, enteredUsername, enteredPassword) {
+    static createFirstAdminAccount(enteredUsername, enteredPassword) {
         return {
             type: this.CREATE_FIRST_ADMIN_ACCOUNT,
             enteredUsername: enteredUsername,
-            enteredPassword: enteredPassword,
-            temporaryAccessToken: temporaryAccessToken
+            enteredPassword: enteredPassword
         }
     }
 
@@ -50,7 +41,7 @@ export class InitialSetup {
         }
     }
 
-    static INITIAL_SETUP_CHECK = "InitialSetup::INITIAL_SETUP_CHECK";
+    static INITIAL_SETUP_CHECK = "InitialSetup::INITIAL_SETUP_CHECK ";
     static performInitialSetupCheck() {
         return {
             type: this.INITIAL_SETUP_CHECK

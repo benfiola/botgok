@@ -4,7 +4,7 @@ import { CreateAdminUser } from '../../components/InitialSetup/CreateAdminUser.j
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        temporaryAccessToken: state.initialSetup.temporaryAccessToken
+        loading: state.initialSetup.loading
     };
 };
 
@@ -13,8 +13,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         onCreate() {
             dispatch(InitialSetup.performInitialSetupCheck());
         },
-        onSubmit(temporaryAccessToken, enteredUsername, enteredPassword) {
-            dispatch(InitialSetup.createFirstAdminAccount(temporaryAccessToken, enteredUsername, enteredPassword));
+        onSubmit(enteredUsername, enteredPassword) {
+            dispatch(InitialSetup.createFirstAdminAccount(enteredUsername, enteredPassword));
         }
     }
 };

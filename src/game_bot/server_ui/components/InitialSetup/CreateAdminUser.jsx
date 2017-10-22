@@ -32,7 +32,7 @@ export class CreateAdminUser extends React.Component {
     }
 
     onSubmit() {
-        this.props.onSubmit(this.props.temporaryAccessToken, this.state.username, this.state.password);
+        this.props.onSubmit(this.state.username, this.state.password);
     }
 
     render() {
@@ -56,7 +56,7 @@ export class CreateAdminUser extends React.Component {
                         value={this.state.password}
                         onChange={this.onPasswordChange}
                     />
-                    <Button onClick={this.props.onSubmit}>
+                    <Button onClick={this.onSubmit}>
                         Smash that submit button.
                     </Button>
                 </Content>

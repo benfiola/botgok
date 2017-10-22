@@ -1,6 +1,6 @@
-import { InitialSetup as Actions } from '../actions/index.jsx';
+import { InitialSetup as Actions, Auth as AuthActions } from '../actions/index.jsx';
 import { InitialSetup as API, Auth as AuthAPI } from '../api/index.jsx';
-import Cookies from 'universal-cookie';
+import { AuthTokenStore } from '../utils/index.jsx';
 import { push } from 'react-router-redux';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
@@ -23,7 +23,7 @@ export function* authorizeTemporaryPassword(action) {
         yield put(Actions.setLoading(true));
         if(yield* performInitialSetupCheck()) {
             const accessToken = yield call(AuthAPI.authenticate, "setup_user", action.enteredPassword);
-            yield put(Actions.receiveTemporaryAccessToken(accessToken));
+            AuthTokenStore.set(accessToken);
             yield put(push("/initialSetup/createAdminUser"));
         }
     } catch(error) {
@@ -45,7 +45,8 @@ export function* createFirstAdminAccount(action) {
     try {
         yield put(Actions.setLoading(true));
         if(yield* performInitialSetupCheck()) {
-            yield call(API.create_admin_user, action.temporaryAccessToken, action.enteredUsername, action.enteredPassword);
+            const accessToken = AuthTokenStore.get();
+            yield call(API.create_admin_user, accessToken, action.enteredUsername, action.enteredPassword);
             yield put(push("/wizard/integrations"))
         }
     } catch(error) {

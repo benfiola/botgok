@@ -4,7 +4,6 @@ from game_bot.server.ui import UI
 from game_bot.server.api import API
 from flask_bcrypt import Bcrypt
 from flask_jwt import JWT
-import json
 
 app = App()
 api = API()
