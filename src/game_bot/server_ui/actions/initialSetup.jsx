@@ -18,10 +18,17 @@ export class InitialSetup {
         }
     }
 
-    static INITIALIZE_INITIAL_SETUP = "InitialSetup::INITIALIZE_INITIAL_SETUP";
-    static initializeInitialSetup() {
+    static TEMPORARY_PASSWORD_ON_CREATE = "InitialSetup::TEMPORARY_PASSWORD_ON_CREATE";
+    static temporaryPasswordOnCreate() {
         return {
-            type: this.INITIALIZE_INITIAL_SETUP
+            type: this.TEMPORARY_PASSWORD_ON_CREATE
+        }
+    }
+
+    static CREATE_ADMIN_ACCOUNT_ON_CREATE = "InitialSetup::CREATE_ADMIN_ACCOUNT_ON_CREATE";
+    static createAdminAccountOnCreate() {
+        return {
+            type: this.CREATE_ADMIN_ACCOUNT_ON_CREATE
         }
     }
 
@@ -30,29 +37,6 @@ export class InitialSetup {
         return {
             type: this.RECEIVE_TEMPORARY_PASSWORD_FILE,
             temporaryPasswordFile: temporaryPasswordFile
-        }
-    }
-
-    static INITIAL_SETUP_ERROR = "InitialSetup::INITIAL_SETUP_ERROR";
-    static initialSetupError(error) {
-        return {
-            type: this.INITIAL_SETUP_ERROR,
-            error: error
-        }
-    }
-
-    static INITIAL_SETUP_CHECK = "InitialSetup::INITIAL_SETUP_CHECK ";
-    static performInitialSetupCheck() {
-        return {
-            type: this.INITIAL_SETUP_CHECK
-        }
-    }
-
-    static SET_LOADING = "InitialSetup::SET_LOADING";
-    static setLoading(value) {
-        return {
-            type: this.SET_LOADING,
-            value: value
         }
     }
 }

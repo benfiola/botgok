@@ -7,10 +7,9 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
 import createHistory from 'history/createBrowserHistory';
-import { Route } from 'react-router';
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 
-import { App } from './components/App.jsx';
+import { AppContainer } from './containers/AppContainer.jsx';
 import { reducers } from './reducers/index.jsx';
 import { sagas } from './sagas/index.jsx';
 
@@ -33,7 +32,7 @@ sagaMiddleware.run(sagas);
 render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
-            <App />
+            <AppContainer />
         </ConnectedRouter>
     </Provider>,
     document.getElementById('container')

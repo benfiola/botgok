@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormControl, Button } from 'react-bootstrap';
 import { Content, Title } from '../Shared/index.jsx';
-import styles from './Common.css';
+import CommonStyles from '../App.css';
 
 export class CreateAdminUser extends React.Component {
     constructor(props) {
@@ -39,9 +39,9 @@ export class CreateAdminUser extends React.Component {
         return (
             <div>
                 <Title>Create an Admin Account</Title>
-                <Content className={styles.contentPanel}>
-                    <div className={styles.instructionSection}>
-                        <p className={styles.bigShoutout}>Aw yeah, that's the stuff.</p>
+                <Content className={CommonStyles.contentPanel}>
+                    <div className={CommonStyles.instructionSection}>
+                        <p className={CommonStyles.bigShoutout}>Aw yeah, that's the stuff.</p>
                         <p>Now that we've gotten that out of the way, it's time that you create your first admin account with me.</p>
                     </div>
                     <FormControl

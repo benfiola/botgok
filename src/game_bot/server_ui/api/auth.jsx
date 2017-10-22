@@ -23,4 +23,18 @@ export class Auth {
             return json.access_token;
         })
     }
+
+    static validToken(accessToken) {
+        return fetch(
+            '/api/v1/auth/logged_in',
+            {
+                method: 'GET',
+                headers: {
+                    "Authorization": `JWT ${accessToken}`
+                }
+            }
+        ).then((response) => {
+            return response.ok;
+        })
+    }
 }

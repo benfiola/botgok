@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormControl, ControlLabel, Button } from 'react-bootstrap';
 import { Title, Content } from '../Shared/index.jsx';
-import styles from './Common.css';
+import CommonStyles from '../App.css';
 
 export class TemporaryPassword extends React.Component {
     constructor(props) {
@@ -33,9 +33,9 @@ export class TemporaryPassword extends React.Component {
         return (
             <div>
                 <Title>Temporary Password</Title>
-                <Content className={styles.contentPanel}>
-                    <div className={styles.instructionSection}>
-                        <p className={styles.bigShoutout}>Why, hello there.</p>
+                <Content className={CommonStyles.contentPanel}>
+                    <div className={CommonStyles.instructionSection}>
+                        <p className={CommonStyles.bigShoutout}>Why, hello there.</p>
                         <p>It looks like you're just getting started with game_bot.</p>
                         <p>Could you do me a solid?  Run the following command on your server, and tell me what you get.</p>
                         <pre>cat {this.props.temporaryPasswordFile}</pre>

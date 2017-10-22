@@ -6,14 +6,14 @@ import { push } from 'react-router-redux';
 const mapStateToProps = (state, ownProps) => {
     return {
         temporaryPasswordFile: state.initialSetup.temporaryPasswordFile,
-        loading: state.initialSetup.loading
+        loading: state.app.loading
     };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onCreate() {
-            dispatch(InitialSetup.initializeInitialSetup());
+            dispatch(InitialSetup.temporaryPasswordOnCreate());
         },
         onSubmit(enteredPassword) {
             dispatch(InitialSetup.authorizeTemporaryPassword(enteredPassword));

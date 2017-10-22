@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
-import { App as Component } from '../components/App.jsx';
-import { App as Actions } from '../actions/index.jsx';
-import { withRouter } from 'react-router-dom'
+import { Login as Component } from '../../components/Login/Login.jsx';
+import { Login as Actions } from '../../actions/index.jsx';
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -17,7 +16,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 };
 
-export const AppContainer = withRouter(connect(
+export const LoginContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Component));
+)(Component);
