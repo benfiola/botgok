@@ -71,7 +71,7 @@ def initial_setup_create_admin_user():
         session.add(temp_file)
 
         # unset the needs_initial_setup value
-        needs_initial_setup.value = False
+        needs_initial_setup.value = None
         session.add(needs_initial_setup)
     return Response(status=201, headers={
         "Location": "/api/v1/users/{}".format(new_user.id)

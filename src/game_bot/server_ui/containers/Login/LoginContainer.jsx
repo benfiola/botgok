@@ -12,6 +12,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onCreate() {
             dispatch(Actions.onCreate());
+        },
+        onSubmit(enteredUsername, enteredPassword) {
+            dispatch(Actions.authorize(enteredUsername, enteredPassword))
         }
     }
 };

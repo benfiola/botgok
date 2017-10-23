@@ -18,22 +18,29 @@ class SQLAlchemy(object):
         self.configure(DatabaseConfiguration.from_dict(app.config))
         app.extensions['db'] = self
 
+        @app.teardown_appcontext
+        def close_session(*args, **kwargs):
+            session = self.Session()
+            session.close()
+
     def configure(self, configuration):
         self.engine = create_engine(configuration.engine_url())
-        self.Session = scoped_session(sessionmaker(bind=self.engine))
+        self.Session = scoped_session(sessionmaker(bind=self.engine, expire_on_commit=False))
         import game_bot.server.database.models as models
 
     def __enter__(self):
         self.context_count += 1
-        return self.Session()
+        session = self.Session()
+        return session
 
     def __exit__(self, exc_type, exc_val, exc_traceback):
         self.context_count -= 1
+        session = self.Session()
         if self.context_count <= 0:
             if exc_val:
-                self.Session().rollback()
+                session.rollback()
             else:
-                self.Session().commit()
+                session.commit()
         if exc_val:
             raise exc_val
 

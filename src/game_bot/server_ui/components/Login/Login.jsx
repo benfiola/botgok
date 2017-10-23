@@ -7,6 +7,8 @@ export class Login extends React.Component {
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onUsernameChange = this.onUsernameChange.bind(this);
+        this.onPasswordChange = this.onPasswordChange.bind(this);
         this.state = {
             username: "",
             password: ""
@@ -15,6 +17,18 @@ export class Login extends React.Component {
 
     onSubmit() {
         this.props.onSubmit(this.state.username, this.state.password);
+    }
+
+    onUsernameChange(e) {
+        this.setState({
+            username: e.target.value
+        });
+    }
+
+    onPasswordChange(e) {
+        this.setState({
+            password: e.target.value
+        });
     }
 
     render() {
@@ -38,7 +52,7 @@ export class Login extends React.Component {
                         onChange={this.onPasswordChange}
                     />
                     <Button onClick={this.onSubmit}>
-                        Smash that submit button.
+                        Let's get it on!
                     </Button>
                 </Content>
             </div>
