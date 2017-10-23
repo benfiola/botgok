@@ -12,6 +12,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onCreate() {
             dispatch(Actions.onCreate());
+        },
+        onLogout() {
+            dispatch(Actions.onLogout());
         }
     };
 };

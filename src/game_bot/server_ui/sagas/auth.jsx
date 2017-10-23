@@ -23,3 +23,7 @@ export function* authenticate(username, password) {
     const accessToken = yield call(API.authenticate, username, password);
     AuthTokenStore.set(accessToken);
 }
+
+export function* logout() {
+    AuthTokenStore.clear();
+}
