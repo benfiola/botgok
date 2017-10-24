@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import { PropRoute, PropSwitch } from '../Shared/index.jsx';
 import { CreateAdminUserContainer } from '../../containers/InitialSetup/CreateAdminUserContainer.jsx';
 import { TemporaryPasswordContainer } from '../../containers/InitialSetup/TemporaryPasswordContainer.jsx';
 
@@ -7,10 +7,10 @@ import { TemporaryPasswordContainer } from '../../containers/InitialSetup/Tempor
 export class InitialSetup extends React.Component {
     render() {
         return (
-            <Switch>
-                <Route key={"temporaryPassword"} path="/initialSetup/temporaryPassword" component={TemporaryPasswordContainer} />
-                <Route key={"createAdminUser"} path="/initialSetup/createAdminUser" component={CreateAdminUserContainer} />
-            </Switch>
+            <PropSwitch>
+                <PropRoute key={"temporaryPassword"} path="/initialSetup/temporaryPassword" component={TemporaryPasswordContainer} />
+                <PropRoute key={"createAdminUser"} path="/initialSetup/createAdminUser" component={CreateAdminUserContainer} />
+            </PropSwitch>
         )
     }
 }

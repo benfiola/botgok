@@ -37,7 +37,7 @@ export class CreateAdminUser extends React.Component {
 
     render() {
         return (
-            <Page>
+            <Page className={this.props.className}>
                 <Title>Create an Admin Account</Title>
                 <Content className={CommonStyles.contentPanel}>
                     <div className={CommonStyles.instructionSection}>
