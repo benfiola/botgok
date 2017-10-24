@@ -33,7 +33,7 @@ export class Login extends React.Component {
 
     render() {
         return (
-            <Page loading={this.props.loading}>
+            <Page>
                 <Title>Login</Title>
                 <Content className={CommonStyles.contentPanel}>
                     <div className={CommonStyles.instructionSection}>

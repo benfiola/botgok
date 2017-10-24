@@ -4,7 +4,6 @@ import { CreateAdminUser } from '../../components/InitialSetup/CreateAdminUser.j
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        loading: state.app.loading
     };
 };
 

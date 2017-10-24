@@ -16,11 +16,13 @@ export class App extends React.Component {
 
     render() {
         return (
-            <Switch>
-                <Route key={"initialSetup"} path={"/initialSetup"} component={InitialSetup}/>
-                <Route key={"dashboard"} path={"/dashboard"} component={DashboardContainer}/>
-                <Route key={"login"} path={"/login"} component={LoginContainer}/>
-            </Switch>
+            <div>
+                <Switch>
+                    <Route key={"initialSetup"} path={"/initialSetup"} component={InitialSetup}/>
+                    <Route key={"dashboard"} path={"/dashboard"} component={DashboardContainer}/>
+                    <Route key={"login"} path={"/login"} component={LoginContainer}/>
+                </Switch>
+            </div>
         );
     }
 }
