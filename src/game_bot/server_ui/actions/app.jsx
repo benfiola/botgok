@@ -9,7 +9,6 @@ export class App {
 
     static SET_LOADING = "App::SET_LOADING";
     static setLoading(value) {
-        console.log(`setting loading to ${value}`);
         return {
             type: this.SET_LOADING,
             value: value
