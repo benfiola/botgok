@@ -14,7 +14,7 @@ export class Dashboard extends React.Component {
     }
     render() {
         return (
-            <Page className={this.props.className}>
+            <Page className={this.props.className} style={this.props.style}>
                 <Title>Dashboard</Title>
                 <Content className={CommonStyles.contentPanel}>
                     <div className={CommonStyles.instructionSection}>

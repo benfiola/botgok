@@ -31,7 +31,7 @@ export class TemporaryPassword extends React.Component {
 
     render() {
         return (
-            <Page className={this.props.className}>
+            <Page className={this.props.className} style={this.props.style}>
                 <Title>Temporary Password</Title>
                 <Content className={CommonStyles.contentPanel}>
                     <div className={CommonStyles.instructionSection}>

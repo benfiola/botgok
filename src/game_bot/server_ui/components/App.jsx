@@ -3,13 +3,13 @@ import { InitialSetup } from './InitialSetup/InitialSetup.jsx';
 import { DashboardContainer } from '../containers/Dashboard/DashboardContainer.jsx';
 import { LoginContainer } from '../containers/Login/LoginContainer.jsx';
 import { Loading } from './Loading/Loading.jsx';
-import { Fade } from 'react-bootstrap';
-import { PropSwitch, PropRoute } from './Shared/index.jsx';
+import { PropSwitch, PropRoute, Fade } from './Shared/index.jsx';
 import styles from './App.css';
 
 export class App extends React.Component {
     constructor(props) {
         super(props);
+        this.transitionTimeout = 500;
     }
 
     componentDidMount() {
@@ -19,10 +19,10 @@ export class App extends React.Component {
     render() {
         return (
             <div>
-                <Fade in={this.props.loading == null || this.props.loading} timeout={10000} unmountOnExit={true}>
+                <Fade in={this.props.loading == null || this.props.loading} timeout={this.transitionTimeout} unmountOnExit={true}>
                     <Loading />
                 </Fade>
-                <Fade in={!this.props.loading} timeout={10000}>
+                <Fade in={!this.props.loading} timeout={this.transitionTimeout}>
                     <PropSwitch>
                         <PropRoute key={"initialSetup"} path={"/initialSetup"} component={InitialSetup}/>
                         <PropRoute key={"dashboard"} path={"/dashboard"} component={DashboardContainer}/>

@@ -10,7 +10,7 @@ export class Loading extends React.Component {
         }
         className = className.join(" ");
         return (
-            <div className={className}>
+            <div className={className} style={this.props.style}>
             </div>
         )
     }
