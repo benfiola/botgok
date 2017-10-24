@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title, Content } from '../Shared/index.jsx';
+import { Title, Content, Page } from '../Shared/index.jsx';
 import { Button } from 'react-bootstrap';
 import CommonStyles from '../App.css';
 
@@ -14,7 +14,7 @@ export class Dashboard extends React.Component {
     }
     render() {
         return (
-            <div>
+            <Page loading={this.props.loading}>
                 <Title>Dashboard</Title>
                 <Content className={CommonStyles.contentPanel}>
                     <div className={CommonStyles.instructionSection}>
@@ -24,7 +24,7 @@ export class Dashboard extends React.Component {
                         </Button>
                     </div>
                 </Content>
-            </div>
+            </Page>
         )
     }
 

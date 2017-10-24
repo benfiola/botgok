@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormControl, Button } from 'react-bootstrap';
-import { Content, Title } from '../Shared/index.jsx';
+import { Content, Title, Page } from '../Shared/index.jsx';
 import CommonStyles from '../App.css';
 
 export class CreateAdminUser extends React.Component {
@@ -37,7 +37,7 @@ export class CreateAdminUser extends React.Component {
 
     render() {
         return (
-            <div>
+            <Page loading={this.props.loading}>
                 <Title>Create an Admin Account</Title>
                 <Content className={CommonStyles.contentPanel}>
                     <div className={CommonStyles.instructionSection}>
@@ -60,7 +60,7 @@ export class CreateAdminUser extends React.Component {
                         Smash that submit button.
                     </Button>
                 </Content>
-            </div>
+            </Page>
         );
     }
 }

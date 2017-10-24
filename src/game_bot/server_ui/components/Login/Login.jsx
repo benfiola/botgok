@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormControl, Button } from 'react-bootstrap';
-import { Title, Content } from '../Shared/index.jsx';
+import { Page, Title, Content } from '../Shared/index.jsx';
 import CommonStyles from '../App.css';
 
 export class Login extends React.Component {
@@ -33,7 +33,7 @@ export class Login extends React.Component {
 
     render() {
         return (
-            <div>
+            <Page loading={this.props.loading}>
                 <Title>Login</Title>
                 <Content className={CommonStyles.contentPanel}>
                     <div className={CommonStyles.instructionSection}>
@@ -55,7 +55,7 @@ export class Login extends React.Component {
                         Let's get it on!
                     </Button>
                 </Content>
-            </div>
+            </Page>
         );
     }
 

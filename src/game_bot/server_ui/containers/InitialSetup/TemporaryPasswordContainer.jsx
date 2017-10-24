@@ -5,7 +5,8 @@ import { push } from 'react-router-redux';
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        temporaryPasswordFile: state.initialSetup.temporaryPasswordFile
+        temporaryPasswordFile: state.initialSetup.temporaryPasswordFile,
+        loading: state.app.loading
     };
 };
 

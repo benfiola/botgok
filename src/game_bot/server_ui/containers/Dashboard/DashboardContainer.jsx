@@ -4,7 +4,7 @@ import { Dashboard as Actions } from '../../actions/index.jsx';
 
 const mapStateToProps = (state, ownProps) => {
     return {
-
+        loading: state.app.loading
     };
 };
 

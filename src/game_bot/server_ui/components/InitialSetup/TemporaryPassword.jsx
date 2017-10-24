@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormControl, ControlLabel, Button } from 'react-bootstrap';
-import { Title, Content } from '../Shared/index.jsx';
+import { Title, Content, Page } from '../Shared/index.jsx';
 import CommonStyles from '../App.css';
 
 export class TemporaryPassword extends React.Component {
@@ -31,7 +31,7 @@ export class TemporaryPassword extends React.Component {
 
     render() {
         return (
-            <div>
+            <Page loading={this.props.loading}>
                 <Title>Temporary Password</Title>
                 <Content className={CommonStyles.contentPanel}>
                     <div className={CommonStyles.instructionSection}>
@@ -47,7 +47,7 @@ export class TemporaryPassword extends React.Component {
                         onChange={this.onInputChange}
                     />
                 </Content>
-            </div>
+            </Page>
         );
     }
 
