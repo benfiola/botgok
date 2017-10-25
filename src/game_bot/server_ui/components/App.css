@@ -24,3 +24,12 @@
     height: 100%;
     background-color: #FFFFFF;
 }
+
+:global .animated-view-wrapper {
+    position: relative;
+}
+
+:global .animated-view-wrapper > div {
+    position: absolute;
+    width: 100%;
+}
