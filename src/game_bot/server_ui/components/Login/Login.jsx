@@ -1,9 +1,13 @@
 import React from 'react';
 import { FormControl, Button } from 'react-bootstrap';
-import { Page, Title, Content } from '../Shared/index.jsx';
-import CommonStyles from '../App.css';
+import { connect } from 'react-redux';
 
-export class Login extends React.Component {
+import { Page, Title, Content } from '../index.jsx';
+import CommonStyles from '../App.css';
+import { Login as Actions } from '../../actions/index.jsx';
+
+
+export class LoginComponent extends React.Component {
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
@@ -63,3 +67,24 @@ export class Login extends React.Component {
         this.props.onCreate();
     }
 }
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+    };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        onCreate() {
+            dispatch(Actions.onCreate());
+        },
+        onSubmit(enteredUsername, enteredPassword) {
+            dispatch(Actions.authorize(enteredUsername, enteredPassword))
+        }
+    }
+};
+
+export const LoginContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LoginComponent);

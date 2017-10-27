@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Title } from '../Shared/index.jsx';
+import { Page, Title } from '../index.jsx';
 import styles from './Loading.css';
 
 export class Loading extends React.Component {

@@ -1,9 +1,12 @@
 import React from 'react';
-import { Title, Content, Page } from '../Shared/index.jsx';
+import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
+
+import { Title, Content, Page } from '../index.jsx';
+import { Dashboard as Actions } from '../../actions/index.jsx';
 import CommonStyles from '../App.css';
 
-export class Dashboard extends React.Component {
+export class DashboardComponent extends React.Component {
     constructor(props){
         super(props);
         this.onLogout = this.onLogout.bind(this);
@@ -32,3 +35,24 @@ export class Dashboard extends React.Component {
         this.props.onCreate();
     }
 }
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+    };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        onCreate() {
+            dispatch(Actions.onCreate());
+        },
+        onLogout() {
+            dispatch(Actions.onLogout());
+        }
+    };
+};
+
+export const DashboardContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(DashboardComponent);

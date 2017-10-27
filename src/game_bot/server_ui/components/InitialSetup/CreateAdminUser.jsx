@@ -1,9 +1,12 @@
 import React from 'react';
 import { FormControl, Button } from 'react-bootstrap';
-import { Content, Title, Page } from '../Shared/index.jsx';
-import CommonStyles from '../App.css';
+import { connect } from 'react-redux';
 
-export class CreateAdminUser extends React.Component {
+import { Content, Title, Page } from '../index.jsx';
+import CommonStyles from '../App.css';
+import { InitialSetup } from '../../actions/index.jsx';
+
+export class CreateAdminUserComponent extends React.Component {
     constructor(props) {
         super(props);
         this.onUsernameChange = this.onUsernameChange.bind(this);
@@ -64,3 +67,24 @@ export class CreateAdminUser extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+    };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        onCreate() {
+            dispatch(InitialSetup.createAdminAccountOnCreate());
+        },
+        onSubmit(enteredUsername, enteredPassword) {
+            dispatch(InitialSetup.createFirstAdminAccount(enteredUsername, enteredPassword));
+        }
+    }
+};
+
+export const CreateAdminUserContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(CreateAdminUserComponent);

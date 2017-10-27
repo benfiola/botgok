@@ -9,7 +9,7 @@ import createSagaMiddleware from 'redux-saga';
 import createHistory from 'history/createBrowserHistory';
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 
-import { AppContainer } from './containers/AppContainer.jsx';
+import { AppContainer } from './components/index.jsx';
 import { reducers } from './reducers/index.jsx';
 import { sagas } from './sagas/index.jsx';
 

@@ -1,14 +1,12 @@
 import React from 'react';
-import { InitialSetup } from './InitialSetup/InitialSetup.jsx';
-import { DashboardContainer } from '../containers/Dashboard/DashboardContainer.jsx';
-import { LoginContainer } from '../containers/Login/LoginContainer.jsx';
+import { connect } from 'react-redux';
+import { InitialSetup, DashboardContainer, LoginContainer, Switch, AnimationFactory } from './index.jsx';
+import { App as Actions } from '../actions/index.jsx';
 import { Route } from 'react-router';
-import { Switch, AnimationFactory } from './Shared/index.jsx';
 
-export class App extends React.Component {
+export class AppComponent extends React.Component {
     constructor(props) {
         super(props);
-        this.transitionTimeout = 500;
     }
 
     componentDidMount() {
@@ -18,7 +16,7 @@ export class App extends React.Component {
     render() {
         return (
             <div>
-                <Switch animation={AnimationFactory.SLIDE}>
+                <Switch animation={AnimationFactory.FADE}>
                     <Route path={"/initialSetup"} component={InitialSetup}/>
                     <Route path={"/dashboard"} component={DashboardContainer}/>
                     <Route path={"/login"} component={LoginContainer}/>
@@ -27,4 +25,23 @@ export class App extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        loading: state.app.loading
+    };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        onCreate() {
+            dispatch(Actions.onCreate());
+        }
+    }
+};
+
+export const AppContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AppComponent);
 

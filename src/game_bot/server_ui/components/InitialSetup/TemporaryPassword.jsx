@@ -1,9 +1,13 @@
 import React from 'react';
 import { FormControl, ControlLabel, Button } from 'react-bootstrap';
-import { Title, Content, Page } from '../Shared/index.jsx';
-import CommonStyles from '../App.css';
+import { connect } from 'react-redux';
 
-export class TemporaryPassword extends React.Component {
+import { Title, Content, Page } from '../index.jsx';
+import CommonStyles from '../App.css';
+import { InitialSetup } from '../../actions/index.jsx'
+
+
+export class TemporaryPasswordComponent extends React.Component {
     constructor(props) {
         super(props);
         this.onInputChange = this.onInputChange.bind(this);
@@ -55,3 +59,25 @@ export class TemporaryPassword extends React.Component {
         this.props.onCreate();
     }
 }
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        temporaryPasswordFile: state.initialSetup.temporaryPasswordFile
+    };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        onCreate() {
+            dispatch(InitialSetup.temporaryPasswordOnCreate());
+        },
+        onSubmit(enteredPassword) {
+            dispatch(InitialSetup.authorizeTemporaryPassword(enteredPassword));
+        }
+    }
+};
+
+export const TemporaryPasswordContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TemporaryPasswordComponent);
