@@ -9,5 +9,5 @@ class UI(object):
         current_dir = os.path.dirname(__file__)
         app.static_folder = os.path.join(current_dir, "static")
         app.template_folder = os.path.join(current_dir, "templates")
-        import game_bot.server.ui.routes
-        app.extensions["ui"] = self
+        import game_bot.server.app_ui.routes
+        app.extensions["app_ui"] = self

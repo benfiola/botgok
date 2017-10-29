@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from game_bot.server.database.configuration import DatabaseConfiguration
+from game_bot.server.app_database.configuration import DatabaseConfiguration
 
 Base = declarative_base()
 
@@ -26,7 +26,7 @@ class SQLAlchemy(object):
     def configure(self, configuration):
         self.engine = create_engine(configuration.engine_url())
         self.Session = scoped_session(sessionmaker(bind=self.engine, expire_on_commit=False))
-        import game_bot.server.database.models as models
+        import game_bot.server.app_database.models as models
 
     def __enter__(self):
         self.context_count += 1

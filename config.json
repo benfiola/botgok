@@ -4,5 +4,6 @@
   "DATABASE_PASSWORD": "testpassword",
   "DATABASE_URL": "localhost:5432",
   "DATABASE_USERNAME": "testuser",
-  "JWT_SECRET_KEY": "totally-not-secret"
+  "JWT_SECRET_KEY": "totally-not-secret",
+  "PLUGIN_FOLDER": "./plugins"
 }

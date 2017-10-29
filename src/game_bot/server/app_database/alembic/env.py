@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from logging.config import fileConfig
 import os
 import json
-from game_bot.server.database.configuration import DatabaseConfiguration
+from game_bot.server.app_database.configuration import DatabaseConfiguration
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

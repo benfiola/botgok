@@ -1,4 +1,4 @@
-from game_bot.server.database import Base
+from game_bot.server.app_database import Base
 from game_bot.server import bcrypt, app
 from sqlalchemy import Column, Integer, String, Boolean
 

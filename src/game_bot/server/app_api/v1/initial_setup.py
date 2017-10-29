@@ -1,5 +1,5 @@
 from game_bot.server import app, db
-from game_bot.server.database.models import User, ServerMetadata
+from game_bot.server.app_database.models import User, ServerMetadata
 from flask import jsonify, Response, request
 from flask_jwt import jwt_required
 import tempfile
@@ -7,14 +7,14 @@ import os
 import uuid
 
 
-@app.route('/api/v1/initial_setup/check', methods=['GET'])
+@app.route('/app_api/v1/initial_setup/check', methods=['GET'])
 def initial_setup_check():
     return jsonify(
         result=bool(ServerMetadata.needs_initial_setup().value)
     )
 
 
-@app.route('/api/v1/initial_setup/initialize', methods=['GET'])
+@app.route('/app_api/v1/initial_setup/initialize', methods=['GET'])
 def initial_setup_initialize():
     with db as session:
         # only allow this if we need to set ourselves up
@@ -39,7 +39,7 @@ def initial_setup_initialize():
         return jsonify(result=temp_file.value)
 
 
-@app.route('/api/v1/initial_setup/create_admin_user', methods=['POST'])
+@app.route('/app_api/v1/initial_setup/create_admin_user', methods=['POST'])
 @jwt_required()
 def initial_setup_create_admin_user():
     with db as session:
@@ -74,7 +74,7 @@ def initial_setup_create_admin_user():
         needs_initial_setup.value = None
         session.add(needs_initial_setup)
     return Response(status=201, headers={
-        "Location": "/api/v1/users/{}".format(new_user.id)
+        "Location": "/app_api/v1/users/{}".format(new_user.id)
     })
 
 

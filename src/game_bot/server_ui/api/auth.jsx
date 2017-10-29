@@ -26,7 +26,7 @@ export class Auth {
 
     static validToken(accessToken) {
         return fetch(
-            '/api/v1/auth/logged_in',
+            '/app_api/v1/auth/logged_in',
             {
                 method: 'GET',
                 headers: {

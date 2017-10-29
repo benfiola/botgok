@@ -1,11 +1,11 @@
 from game_bot.server import app, db
 from flask_jwt import jwt_required, current_identity
 from flask import request, Response, jsonify
-from game_bot.server.database.models import User
+from game_bot.server.app_database.models import User
 
 
-@app.route('/api/v1/user', methods=['GET'])
-@app.route('/api/v1/user/<int:user_id>', methods=['GET'])
+@app.route('/app_api/v1/user', methods=['GET'])
+@app.route('/app_api/v1/user/<int:user_id>', methods=['GET'])
 @jwt_required()
 def get_user(user_id=None):
     if user_id is None and not current_identity.admin:
@@ -25,7 +25,7 @@ def get_user(user_id=None):
             return jsonify(result=user.to_json(), status=200)
 
 
-@app.route('/api/v1/user/<int:user_id>', methods=['DELETE'])
+@app.route('/app_api/v1/user/<int:user_id>', methods=['DELETE'])
 @jwt_required()
 def delete_user(user_id):
     if current_identity.id != user_id and not current_identity.admin:
@@ -41,7 +41,7 @@ def delete_user(user_id):
     return Response(status=204)
 
 
-@app.route('/api/v1/user', methods=['POST'])
+@app.route('/app_api/v1/user', methods=['POST'])
 @jwt_required()
 def add_user():
     data = request.json
@@ -51,6 +51,6 @@ def add_user():
         session.add(new_user)
 
     return Response(status=201, headers={
-        "Location": "/api/v1/user/{}".format(new_user.id)
+        "Location": "/app_api/v1/user/{}".format(new_user.id)
     })
 
