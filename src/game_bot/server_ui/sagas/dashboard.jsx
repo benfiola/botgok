@@ -1,12 +1,13 @@
 import { takeLatest, put, call } from 'redux-saga/effects';
 import { Dashboard as Actions, App as AppActions } from '../actions/index.jsx';
+import { Plugins as PluginsAPI } from '../api/index.jsx';
+import { AuthTokenStore } from '../utils/AuthTokenStore.jsx';
 import { tokenCheck, logout } from './auth.jsx';
 import { redirect } from './app.jsx';
 
 export function* onCreate() {
     const validToken = yield* tokenCheck();
     if(!validToken) {
-        yield* redirect("/login");
         return;
     }
     yield put(AppActions.setLoading(false));

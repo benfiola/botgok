@@ -4,10 +4,12 @@ import { sagas as initialSetupSagas } from './initialSetup.jsx';
 import { sagas as loginSagas } from './login.jsx';
 import { sagas as appSagas } from './app.jsx';
 import { sagas as dashboardSagas } from './dashboard.jsx';
+import { sagas as pluginsSagas } from './plugins.jsx';
 
 export function* sagas() {
     yield* initialSetupSagas();
     yield* appSagas();
     yield* loginSagas();
     yield* dashboardSagas();
+    yield* pluginsSagas();
 }

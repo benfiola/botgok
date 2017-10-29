@@ -3,7 +3,7 @@ import { createErrorFromResponse } from './index.jsx';
 export class User {
     static create(access_token, username, password, admin) {
         fetch(
-            '/app_api/v1/user',
+            '/api/v1/user',
             {
                 method: 'POST',
                 headers: {

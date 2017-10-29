@@ -22,6 +22,7 @@ export function* onCreate() {
 
 export function* authorize(action) {
     try {
+        console.log("authorizing");
         const accessToken = yield call(AuthAPI.authenticate, action.enteredUsername, action.enteredPassword);
         AuthTokenStore.set(accessToken);
         yield* redirect("/dashboard");
