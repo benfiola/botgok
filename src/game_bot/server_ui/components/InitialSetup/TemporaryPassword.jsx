@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { Title, Content, Page } from '../index.jsx';
 import CommonStyles from '../App.css';
-import { InitialSetup } from '../../actions/index.jsx'
+import { InitialSetup as Actions } from '../../actions/index.jsx'
 
 
 export class TemporaryPasswordComponent extends React.Component {
@@ -69,10 +69,10 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onCreate() {
-            dispatch(InitialSetup.temporaryPasswordOnCreate());
+            dispatch(Actions.temporaryPasswordOnCreate());
         },
         onSubmit(enteredPassword) {
-            dispatch(InitialSetup.authorizeTemporaryPassword(enteredPassword));
+            dispatch(Actions.authorizeTemporaryPassword(enteredPassword));
         }
     }
 };

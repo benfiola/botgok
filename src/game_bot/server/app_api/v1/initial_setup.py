@@ -1,20 +1,19 @@
-from game_bot.server import app, db
+from game_bot.server import app, db, auth
 from game_bot.server.app_database.models import User, ServerMetadata
 from flask import jsonify, Response, request
-from flask_jwt import jwt_required
 import tempfile
 import os
 import uuid
 
 
-@app.route('/app_api/v1/initial_setup/check', methods=['GET'])
+@app.route('/api/v1/initial_setup/check', methods=['GET'])
 def initial_setup_check():
     return jsonify(
         result=bool(ServerMetadata.needs_initial_setup().value)
     )
 
 
-@app.route('/app_api/v1/initial_setup/initialize', methods=['GET'])
+@app.route('/api/v1/initial_setup/initialize', methods=['GET'])
 def initial_setup_initialize():
     with db as session:
         # only allow this if we need to set ourselves up
@@ -39,8 +38,8 @@ def initial_setup_initialize():
         return jsonify(result=temp_file.value)
 
 
-@app.route('/app_api/v1/initial_setup/create_admin_user', methods=['POST'])
-@jwt_required()
+@app.route('/api/v1/initial_setup/create_admin_user', methods=['POST'])
+@auth.requires_admin()
 def initial_setup_create_admin_user():
     with db as session:
         needs_initial_setup = ServerMetadata.needs_initial_setup()

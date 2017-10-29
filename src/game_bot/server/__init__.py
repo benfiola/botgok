@@ -2,16 +2,16 @@ from game_bot.server.app import App
 from game_bot.server.app_database import SQLAlchemy
 from game_bot.server.app_ui import UI
 from game_bot.server.app_api import API
+from game_bot.server.app_auth import Auth
 from game_bot.server.app_plugin_registry import PluginRegistry
 from flask_bcrypt import Bcrypt
-from flask_jwt import JWT
 
 app = App()
 api = API()
 db = SQLAlchemy()
 ui = UI()
 bcrypt = Bcrypt()
-jwt = JWT()
+auth = Auth()
 plugin_registry = PluginRegistry()
 
 
@@ -31,8 +31,8 @@ def create_app(json_config_file):
     global ui
     ui.init_app(app)
 
-    global jwt
-    jwt.init_app(app)
+    global auth
+    auth.init_app(app)
 
     global plugin_registry
     plugin_registry.init_app(app)

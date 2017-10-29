@@ -6,4 +6,4 @@ class API(object):
 
     def init_app(self, app):
         import game_bot.server.app_api.v1
-        app.extensions["app_api"] = self
+        app.extensions["api"] = self

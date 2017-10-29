@@ -18,16 +18,17 @@ depends_on = None
 
 def upgrade():
     op.create_table(
-        'app_plugin_registry',
+        'plugin_registry',
         sa.Column('id', sa.Integer, primary_key=True, autoincrement=True),
         sa.Column('name', sa.String, nullable=False),
         sa.Column('version', sa.String, nullable=False),
         sa.Column('path', sa.String, nullable=False),
-        sa.Column('active', sa.Boolean, nullable=False, default=False)
+        sa.Column('active', sa.Boolean, nullable=False, default=False),
+        sa.Column('missing', sa.Boolean, nullable=False, default=False)
     )
 
 
 def downgrade():
     op.drop_table(
-        'server_metadata'
+        'plugin_registry'
     )

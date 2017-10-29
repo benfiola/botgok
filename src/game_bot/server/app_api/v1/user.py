@@ -1,12 +1,12 @@
-from game_bot.server import app, db
-from flask_jwt import jwt_required, current_identity
+from game_bot.server import app, db, auth
+from flask_jwt import current_identity
 from flask import request, Response, jsonify
 from game_bot.server.app_database.models import User
 
 
-@app.route('/app_api/v1/user', methods=['GET'])
-@app.route('/app_api/v1/user/<int:user_id>', methods=['GET'])
-@jwt_required()
+@app.route('/api/v1/user', methods=['GET'])
+@app.route('/api/v1/user/<int:user_id>', methods=['GET'])
+@auth.requires_login()
 def get_user(user_id=None):
     if user_id is None and not current_identity.admin:
         return Response(status=401)
@@ -25,8 +25,8 @@ def get_user(user_id=None):
             return jsonify(result=user.to_json(), status=200)
 
 
-@app.route('/app_api/v1/user/<int:user_id>', methods=['DELETE'])
-@jwt_required()
+@app.route('/api/v1/user/<int:user_id>', methods=['DELETE'])
+@auth.requires_login()
 def delete_user(user_id):
     if current_identity.id != user_id and not current_identity.admin:
         return Response(status=401)
@@ -41,8 +41,8 @@ def delete_user(user_id):
     return Response(status=204)
 
 
-@app.route('/app_api/v1/user', methods=['POST'])
-@jwt_required()
+@app.route('/api/v1/user', methods=['POST'])
+@auth.requires_login()
 def add_user():
     data = request.json
 

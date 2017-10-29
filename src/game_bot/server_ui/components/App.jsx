@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { InitialSetup, DashboardContainer, LoginContainer, Switch, AnimationFactory } from './index.jsx';
 import { App as Actions } from '../actions/index.jsx';
-import { Route } from 'react-router';
+import { Route, withRouter } from 'react-router';
 
 export class AppComponent extends React.Component {
     constructor(props) {
@@ -40,8 +40,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 };
 
-export const AppContainer = connect(
+export const AppContainer = withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(AppComponent);
+)(AppComponent));
 

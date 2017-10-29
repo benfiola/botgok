@@ -1,3 +1,3 @@
-
-import test_plugin
+import test_plugin.test_plugin_subpkg
+import test_plugin.test_plugin_module
 
