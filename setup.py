@@ -3,7 +3,7 @@ from glob import glob
 from os.path import splitext, basename
 
 setup(
-    name="game-bot",
+    name="openbot",
     version="0.0.1",
     author="benfiola@gmail.com",
     packages=find_packages('src'),
@@ -16,6 +16,7 @@ setup(
         'sqlalchemy',
         'psycopg2',
         'flask-bcrypt',
-        'flask-jwt'
+        'flask-jwt',
+        'pip'
     ]
 )

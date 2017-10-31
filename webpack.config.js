@@ -35,8 +35,8 @@ var config = {
     ]
 };
 
-var context = path.join(__dirname, 'src/game_bot/server_ui');
-var target = path.join(__dirname, 'src/game_bot/server/app_ui/static/js');
+var context = path.join(__dirname, 'src/openbot/server_ui');
+var target = path.join(__dirname, 'src/openbot/server/app_ui/static/js');
 module.exports = [
     {
         entry: './index.js',

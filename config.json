@@ -1,9 +1,8 @@
 {
   "DATABASE_DIALECT": "postgresql",
-  "DATABASE_NAME": "game_bot",
+  "DATABASE_NAME": "openbot",
   "DATABASE_PASSWORD": "testpassword",
   "DATABASE_URL": "localhost:5432",
   "DATABASE_USERNAME": "testuser",
-  "JWT_SECRET_KEY": "totally-not-secret",
-  "PLUGIN_FOLDER": "./plugins"
+  "JWT_SECRET_KEY": "totally-not-secret"
 }

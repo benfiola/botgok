@@ -1,4 +1,4 @@
-from game_bot.server import create_app
+from openbot.server import create_app
 import os
 
 config_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), "config.json")

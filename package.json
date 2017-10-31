@@ -1,8 +1,8 @@
 {
-  "name": "game-bot-server-ui",
+  "name": "openbot-server-ui",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/game_bot/server_ui/index.js",
+  "main": "./src/openbot/server_ui/index.js",
   "directories": {
     "test": "tests"
   },
